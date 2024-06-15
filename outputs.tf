@@ -1,7 +1,7 @@
 output "vm_vmids" {
-  value = { for k, v in vm_qemu.vm : k => v.vmid }
+  value = { for k, v in proxmox_vm_qemu.vm : k => v.vmid }
 }
 
 output "vm_ips" {
-  value = { for k, v in vm_qemu.vm : k => v.network[0].ip }
+  value = { for k, v in proxmox_vm_qemu.vm : k => v.network[0].ip }
 }
