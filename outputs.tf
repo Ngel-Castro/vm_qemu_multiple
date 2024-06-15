@@ -1,5 +1,5 @@
 output "vm_vmids" {
-  value = { for k, v in proxmox_vm_qemu.vm : k => v.vmid }
+  value = { for k, v in proxmox_vm_qemu.vm : k => v.id }
 }
 
 output "vm_ips" {
