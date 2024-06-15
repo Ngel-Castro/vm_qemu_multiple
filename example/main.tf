@@ -1,4 +1,4 @@
-module "lxc_vms" {
+module "vm_qemu" {
   source = "github.com/Ngel-Castro/vm_qemu_multiple?ref=stable"
 
   # Pass in required variables
