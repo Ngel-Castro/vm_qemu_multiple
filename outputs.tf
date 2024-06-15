@@ -3,5 +3,5 @@ output "vm_vmids" {
 }
 
 output "vm_ips" {
-  value = { for k, v in proxmox_vm_qemu.vm : k => v.network[0].default_ipv4_address }
+  value = { for k, v in proxmox_vm_qemu.vm : k => v.default_ipv4_address }
 }
