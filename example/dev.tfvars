@@ -31,4 +31,3 @@ vms = [
     }
 ]
 environment       = "dev"
-default_password  = "LXCChangeMe"

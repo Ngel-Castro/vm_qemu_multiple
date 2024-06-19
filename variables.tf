@@ -10,9 +10,9 @@ variable "vms" {
         memory          = number
         cores           = number
         tags            = string
-        ip              = string
-        vmid            = number
-        gw              = string
+        ip              = optional(string)
+        vmid            = optional(number)
+        gw              = optional(string)
     }))
     default = [
         {
