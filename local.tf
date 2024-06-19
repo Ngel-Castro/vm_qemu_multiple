@@ -11,9 +11,9 @@ locals {
         memory          = vm.memory
         cores           = vm.cores
         tags            = vm.tags
-        ip          = lookup(vm, "ip", "dhcp")
-        external    = lookup(vm, "vmid", 200)
-        gw          = lookup(vm, "gw", "192.168.0.1")
+        ip              = lookup(vm, "ip", "dhcp")
+        vmid            = lookup(vm, "vmid", 200)
+        gw              = lookup(vm, "gw", "192.168.0.1")
     }
   ]
 }
