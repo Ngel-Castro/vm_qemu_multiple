@@ -17,7 +17,7 @@ provider "proxmox" {
 }
 
 resource "proxmox_vm_qemu" "vm" {
-  for_each = { for idx, vm in var.vms : idx => vm }
+  for_each = { for idx, vm in local.vms : idx => vm }
 
   name        = "${each.value.name}-${var.environment}"
   target_node = each.value.target_node
