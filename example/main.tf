@@ -7,5 +7,4 @@ module "vm_qemu" {
     proxmox_token_secret    = var.proxmox_token_secret
     vms                     = var.vms
     environment             = var.environment
-    default_password        = var.default_password
 }
