@@ -14,6 +14,7 @@ locals {
         ip              = lookup(vm, "ip", "dhcp")
         vmid            = lookup(vm, "vmid", 200)
         gw              = lookup(vm, "gw", "192.168.0.1")
+        vlan_tag        = lookup(vm, "vlan_tag", 3)
     }
   ]
 }
