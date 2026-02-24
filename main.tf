@@ -2,7 +2,7 @@ terraform {
   required_providers {
     proxmox = {
       source = "telmate/proxmox"
-      version = "3.0.1-rc1"
+      version = "3.0.2-rc07"
     }
   }
 
@@ -50,11 +50,15 @@ resource "proxmox_vm_qemu" "vm" {
           }
       }
   }
+  ipconfig0 = each.value.ip == "dhcp" ? "ip=dhcp" : "ip=${each.value.ip},gw=${each.value.gw}"
+
   network {
+      id        = 0
       bridge    = each.value.network_bridge
       firewall  = false
       link_down = false
       model     = "virtio"
+      tag       = each.value.vlan_tag
   }  
 
 }
