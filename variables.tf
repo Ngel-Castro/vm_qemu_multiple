@@ -15,6 +15,15 @@ variable "vms" {
         gw              = optional(string, null)
         vlan_tag        = optional(number, 3)
     }))
+
+    validation {
+        condition = alltrue([
+            for vm in var.vms :
+            vm.ip == "dhcp" || (vm.ip != "dhcp" && vm.gw != null)
+        ])
+        error_message = "Each VM with a static IP must also provide a 'gw' (gateway). Set ip = \"dhcp\" to use DHCP, or provide both 'ip' and 'gw' for a static configuration."
+    }
+
     default = [
         {
             name            = "vm"

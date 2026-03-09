@@ -1,5 +1,6 @@
 vms = [
-    { 
+    # VM using DHCP — omit ip and gw (or set ip = "dhcp")
+    {
         name            = "vm-1"
         target_node     = "proxmox"
         storage         = "Kingstone-data"
@@ -11,10 +12,10 @@ vms = [
         cores           = 2
         tags            = "tofu"
         vlan_tag        = 3
-        # ip            = "192.168.3.10/24"  # optional: omit or set "dhcp" for DHCP
-        # gw            = "192.168.3.1"       # required when ip is static
+        # ip and gw omitted → defaults to DHCP
     },
-    { 
+    # VM using a static IP — both ip and gw are required
+    {
         name            = "vm-2"
         target_node     = "proxmox"
         storage         = "Kingstone-data"
@@ -26,6 +27,8 @@ vms = [
         cores           = 2
         tags            = "tofu"
         vlan_tag        = 3
+        ip              = "192.168.3.10/24"
+        gw              = "192.168.3.1"
     }
 ]
-environment       = "dev"
+environment = "dev"
