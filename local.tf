@@ -11,10 +11,10 @@ locals {
         memory          = vm.memory
         cores           = vm.cores
         tags            = vm.tags
-        ip              = lookup(vm, "ip", "dhcp")
-        vmid            = lookup(vm, "vmid", 200)
-        gw              = lookup(vm, "gw", "192.168.0.1")
-        vlan_tag        = lookup(vm, "vlan_tag", 3)
+        ip              = vm.ip
+        vmid            = vm.vmid
+        gw              = vm.gw
+        vlan_tag        = vm.vlan_tag
     }
   ]
 }
