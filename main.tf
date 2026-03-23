@@ -31,6 +31,13 @@ resource "proxmox_vm_qemu" "vm" {
   clone = each.value.template_name
 
   disks {
+      ide {
+          ide2 {
+              cloudinit {
+                  storage = each.value.storage
+              }
+          }
+      }
       scsi {
           scsi0 {
               disk {
