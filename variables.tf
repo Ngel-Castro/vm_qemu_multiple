@@ -1,19 +1,20 @@
 variable "vms" {
     type = list(object({
-        name            = string
-        target_node     = string
-        storage         = string
-        storage_size    = number
-        full_clone      = bool
-        template_name   = string
-        network_bridge  = string
-        memory          = number
-        cores           = number
-        tags            = string
-        ip              = optional(string, "dhcp")
-        vmid            = optional(number, null)
-        gw              = optional(string, null)
-        vlan_tag        = optional(number, 3)
+        name               = string
+        target_node        = string
+        storage            = string
+        storage_size       = number
+        full_clone         = bool
+        template_name      = string
+        network_bridge     = string
+        memory             = number
+        cores              = number
+        tags               = string
+        ip                 = optional(string, "dhcp")
+        vmid               = optional(number, null)
+        gw                 = optional(string, null)
+        vlan_tag           = optional(number, 3)
+        cloudinit_storage  = optional(string, "local")
     }))
 
     validation {
