@@ -14,7 +14,8 @@ locals {
         ip              = vm.ip
         vmid            = vm.vmid
         gw              = vm.gw
-        vlan_tag        = vm.vlan_tag
+        vlan_tag           = vm.vlan_tag
+        cloudinit_storage  = vm.cloudinit_storage
     }
   ]
 }
