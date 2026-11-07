@@ -15,6 +15,8 @@ variable "vms" {
         gw                 = optional(string, null)
         vlan_tag           = optional(number, 3)
         cloudinit_storage  = optional(string, "local")
+        data_disk_size     = optional(number, 0)
+        data_disk_storage  = optional(string, null)
     }))
 
     validation {

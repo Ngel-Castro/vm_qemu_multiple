@@ -55,6 +55,21 @@ resource "proxmox_vm_qemu" "vm" {
                   storage            = each.value.storage
               }
           }
+          dynamic "scsi1" {
+              for_each = each.value.data_disk_size > 0 ? [1] : []
+              content {
+                  disk {
+                      backup     = true
+                      cache      = "none"
+                      discard    = true
+                      emulatessd = true
+                      iothread   = true
+                      replicate  = true
+                      size       = each.value.data_disk_size
+                      storage    = each.value.data_disk_storage
+                  }
+              }
+          }
       }
   }
   ipconfig0 = each.value.ip == "dhcp" ? "ip=dhcp" : "ip=${each.value.ip},gw=${each.value.gw}"
