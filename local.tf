@@ -16,6 +16,8 @@ locals {
         gw              = vm.gw
         vlan_tag           = vm.vlan_tag
         cloudinit_storage  = vm.cloudinit_storage
+        data_disk_size     = vm.data_disk_size
+        data_disk_storage  = coalesce(vm.data_disk_storage, vm.storage)
     }
   ]
 }

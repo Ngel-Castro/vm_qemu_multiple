@@ -65,6 +65,32 @@ module "vms" {
 }
 ```
 
+### Root disk and a separate data disk
+
+`storage_size` is the root disk (`scsi0`): the clone is grown to it, and it cannot be smaller than the
+template. `data_disk_size` adds a second disk (`scsi1`) for data that grows. The module only creates the disk;
+partitioning, formatting and mounting are done in the guest. Adding a data disk to an existing VM adds a disk to it.
+
+```hcl
+vms = [
+  {
+    name           = "k3s"
+    target_node    = "proxmox"
+    storage        = "local-lvm"
+    storage_size   = 40
+    data_disk_size = 100
+    full_clone     = true
+    template_name  = "ubuntu-server-base"
+    network_bridge = "vmbr0"
+    memory         = 8192
+    cores          = 4
+    tags           = "tofu"
+  }
+]
+```
+
+Tests: `tofu init -backend=false && tofu test` (plan only, mocked provider, nothing reaches Proxmox).
+
 ### Mixed — DHCP and static in the same list
 
 ```hcl
@@ -147,6 +173,9 @@ vms = [
 | `gw` | `string` | `null` | Gateway — **required** when `ip` is not `"dhcp"` |
 | `vmid` | `number` | `null` | Proxmox VM ID (auto-assigned if null) |
 | `vlan_tag` | `number` | `3` | VLAN tag |
+| `cloudinit_storage` | `string` | `"local"` | Storage for the cloud-init drive |
+| `data_disk_size` | `number` | `0` | Size in GB of a second disk (`scsi1`). `0` means no data disk |
+| `data_disk_storage` | `string` | `null` | Storage for the data disk; the VM's `storage` when null |
 
 ## Outputs
 
